@@ -66,7 +66,7 @@ Do not add any explanation before or after the JSON.
             }
         ],
 
-        max_tokens=1200,
+        max_tokens=4000,
 
         temperature=0.3
     )
