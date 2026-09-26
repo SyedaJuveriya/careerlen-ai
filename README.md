@@ -130,6 +130,10 @@ API keys and database credentials are stored in environment variables instead of
 
 For a production version, password hashing and other security improvements would be added.
 
+## Live Link
+
+🔗: [careerlens-ai-ffda.onrender.com](https://careerlens-ai-ffda.onrender.com/dashboard)
+
 ## Author
 
 Syeda Juveriya
