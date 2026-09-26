@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Your History</h1>
+    <p>Here you can view your previous resume analyses.</p>
+
+    {% for r in reports %}
+    <div class="card">
+        <h3>Analysis Report</h3>
+        <p><strong>Resume Preview:</strong> {{ r.resume_text[:200] }}...</p>
+
+        {% if r.result is mapping %}
+            {% if r.result.error %}
+                <p style="color: red;">{{ r.result.error }}</p>
+            {% else %}
+                <h4>Score: {{ r.result.get('score', 'N/A') }}/100</h4>
+
+                <h4>Strengths</h4>
+                <ul>
+                    {% for s in r.result.get('strengths', []) %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Weaknesses</h4>
+                <ul>
+                    {% for w in r.result.get('weaknesses', []) %}
+                        <li>{{ w }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h4>Suggestions</h4>
+                <ul>
+                    {% for sg in r.result.get('suggestions', []) %}
+                        <li>{{ sg }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% else %}
+            <p style="color: red;">{{ r.result }}</p>
+        {% endif %}
+    </div>
+    <hr>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard container">
+    <h1>Dashboard</h1>
+    <p>Welcome to your dashboard!</p>
+</div>
+<div class="card">
+    <h3>Resume Analyzer</h3>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="resume_file" accept=".pdf,.doc,.docx" required>
+        <input type="text" name="user_goal" placeholder="Enter job description" required>
+        <button type="submit">Analyze Resume</button>
+    </form>
+</div>
+
+{% if result is mapping %}
+    <div class="card">
+        {% if result.error %}
+        <p style="color: red;">{{ result.error }}</p>
+        {% else %}
+            <h3>Score: {{ result.get('score', 'N/A') }}/100</h3>
+
+            <h3>Strengths</h3>
+            <ul>
+                {% for s in result.get('strengths', []) %}
+                    <li>{{ s }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Weaknesses</h3>
+            <ul>
+                {% for w in result.get('weaknesses', []) %}
+                    <li>{{ w }}</li>
+                {% endfor %}
+            </ul>
+
+            <h3>Suggestions</h3>
+            <ul>
+                {% for sg in result.get('suggestions', []) %}
+                    <li>{{ sg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% elif result %}
+    <div class="card">
+        <p style="color: red;">{{ result }}</p>
+    </div>
+{% endif %}
+
+{% endblock %}
