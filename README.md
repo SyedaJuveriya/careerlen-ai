@@ -57,7 +57,7 @@ careerlens-ai/
 
 ```bash
 git clone https://github.com/SyedaJuveriya/careerlen-ai.git
-cd careerlen-ai
+cd careerlens-ai
 ```
 
 ### 2. Create a virtual environment
