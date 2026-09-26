@@ -432,16 +432,20 @@ hr {
     margin-bottom: 12px;
 }
 
-.feature-card h3 {
-    font-size: 16px;
-    margin-bottom: 8px;
-    color: #1e1b2e;
+.feature-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 28px 24px;
+    width: 220px;
+    box-shadow: 0 8px 30px rgba(76, 29, 149, 0.08);
+    border: 1px solid rgba(139, 92, 246, 0.08);
+    transition: all 0.3s ease;
 }
 
-.feature-card p {
-    font-size: 13px;
-    color: #8a84a3;
-    line-height: 1.5;
+.feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(76, 29, 149, 0.15);
+    border-color: rgba(139, 92, 246, 0.2);
 }
 
 @media (max-width: 640px) {
