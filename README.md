@@ -134,8 +134,5 @@ For a production version, password hashing and other security improvements would
 
 Syeda Juveriya
 
-```
 
-**One correction before you paste:** your actual GitHub repo URL is `careerlen-ai` according to the terminal you showed me, so I kept that exact name in the clone command. Also, make sure `requirements.txt` actually exists in your GitHub repo before keeping it in the structure, otherwise remove that line.
-```
 
