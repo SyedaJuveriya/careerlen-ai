@@ -56,7 +56,7 @@ careerlens-ai/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/SyedaJuveriya/careerlen-ai.git
+git clone https://github.com/SyedaJuveriya/careerlens-ai.git
 cd careerlens-ai
 ```
 
