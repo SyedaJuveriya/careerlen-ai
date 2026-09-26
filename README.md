@@ -1,127 +1,142 @@
-# CareerLens AI 🔍
+````markdown
+# CareerLens AI
 
-**CareerLens AI** is an AI-powered resume analyzer web application that helps job seekers understand how well their resume aligns with a specific job goal. Users can sign up, upload their resume (PDF/DOCX), enter their target role or job description, and receive an instant AI-generated analysis — including a match score, strengths, weaknesses, and actionable suggestions for improvement.
+CareerLens AI is a Flask-based web application that analyzes a resume based on the user's career goal.
 
-Built as part of the GIST Internship Python Development track (Task 4 — Advanced+: Python-Based Real-World Application), this project demonstrates AI integration, database persistence, REST API consumption, and a structured Flask project architecture.
+The user can create an account, upload a resume in PDF or DOCX format, enter a target job role, and get feedback from an AI model. The application also saves previous analyses so they can be viewed later.
 
----
+This project was developed as part of the GIST Internship Python Development track, Task 4.
 
-## ✨ Features
+## What the project does
 
-- 🔐 **User Authentication** — Secure signup/login system with session-based access control
-- 📄 **Resume Parsing** — Supports both PDF and DOCX resume uploads
-- 🤖 **AI-Powered Analysis** — Uses an LLM (via OpenRouter API) to evaluate resumes against a user-defined job goal
-- 📊 **Structured Feedback** — Returns a score out of 100, along with strengths, weaknesses, and improvement suggestions
-- 🕘 **Analysis History** — Every report is saved to the database and viewable later on the History page
-- 🎨 **Clean, Responsive UI** — Custom-styled interface built with Jinja2 templates and CSS
+- User signup and login
+- Upload resumes in PDF and DOCX format
+- Enter a target job role or career goal
+- Analyze the resume using an AI model
+- Get a score, strengths, weaknesses and suggestions
+- Save the analysis in the database
+- View previous analyses from the History page
 
----
+## Technologies used
 
-## 🛠️ Tech Stack
+- Python
+- Flask
+- SQLAlchemy
+- TiDB Cloud (MySQL compatible)
+- OpenRouter API
+- PyPDF2
+- python-docx
+- HTML
+- CSS
+- Jinja2
+- python-dotenv
 
-| Layer          | Technology                          |
-|----------------|--------------------------------------|
-| Backend        | Python, Flask                        |
-| Database       | MySQL (TiDB Cloud) via SQLAlchemy    |
-| AI Integration | OpenRouter API (OpenAI-compatible SDK) |
-| File Parsing   | PyPDF2, python-docx                  |
-| Frontend       | HTML, CSS, Jinja2 Templates          |
-| Environment    | python-dotenv for config management  |
+## Project structure
 
----
-
-## 📁 Project Structure
-
-```
+```text
 careerlens-ai/
-├── app.py                 # Flask routes and core application logic
-├── ai.py                  # AI resume analysis logic (OpenRouter integration)
-├── db.py                  # Database engine and session configuration
-├── models.py               # SQLAlchemy models (User, Report)
+│
+├── app.py
+├── ai.py
+├── db.py
+├── models.py
 ├── static/
-│   └── style.css           # Application styling
+│   └── style.css
 ├── templates/
-│   ├── base.html            # Base layout with navigation
+│   ├── base.html
 │   ├── login.html
 │   ├── signup.html
-│   ├── dashboard.html       # Resume upload + analysis results
-│   └── history.html         # Past analysis reports
-├── .env                    # Environment variables (not committed)
+│   ├── dashboard.html
+│   └── history.html
 ├── .gitignore
 └── requirements.txt
-```
+````
 
----
-
-## ⚙️ Setup & Installation
+## How to run
 
 ### 1. Clone the repository
+
 ```bash
 git clone https://github.com/SyedaJuveriya/careerlen-ai.git
-cd careerlens-ai
+cd careerlen-ai
 ```
 
-### 2. Create and activate a virtual environment
+### 2. Create a virtual environment
+
+Windows:
+
 ```bash
 python -m venv venv
-venv\Scripts\activate        # Windows
-source venv/bin/activate     # macOS/Linux
+venv\Scripts\activate
 ```
 
-### 3. Install dependencies
+macOS/Linux:
+
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install the required packages
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Configure environment variables
-Create a `.env` file in the project root:
+### 4. Add environment variables
+
+Create a `.env` file in the project folder:
+
+```env
+OPENROUTER_API_KEY=your_api_key
+DATABASE_URL=your_database_url
 ```
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-```
 
-Get a free API key from [OpenRouter](https://openrouter.ai/keys) — no card required.
+The `.env` file should not be uploaded to GitHub.
 
-### 5. Set up the database
-Update the `DATABASE_URL` in `db.py` with your own MySQL/TiDB connection string.
+### 5. Run the application
 
-### 6. Run the application
 ```bash
 python app.py
 ```
-Visit **http://127.0.0.1:5000** in your browser.
 
----
+Then open:
 
-## 🚀 Usage
+```text
+http://127.0.0.1:5000
+```
 
-1. **Sign up** for a new account
-2. **Log in** with your credentials
-3. On the **Dashboard**, upload your resume (PDF/DOCX) and enter your target job role or description
-4. Click **Analyze Resume** to get instant AI feedback
-5. View all past analyses on the **History** page
+## How to use
 
----
+1. Create an account.
+2. Log in.
+3. Upload your resume.
+4. Enter the job role or career goal you are targeting.
+5. Submit the resume for analysis.
+6. Check the feedback on the dashboard.
+7. Open the History page to see previous analyses.
 
-## 🔒 Security Notes
+## Database
 
-- API keys are managed via environment variables (`.env`) and never hardcoded
-- Sensitive files (`venv/`, `__pycache__/`, `.env`) are excluded via `.gitignore`
-- Passwords are stored per user account (recommended: hash passwords with `werkzeug.security` before production use)
+The project uses TiDB Cloud as the database. SQLAlchemy is used to connect the Flask application with the database.
 
----
+Two main tables are used:
 
-## 📌 Future Improvements
+* `users` - stores user account details
+* `reports` - stores resume analysis results
 
-- Password hashing for stronger security
-- "Forgot Password" functionality
-- Export analysis reports as PDF
-- Support for more resume formats
-- Deployment to a production hosting platform (Render/Railway)
+## Notes
 
----
+API keys and database credentials are stored in environment variables instead of being written directly in the Python files.
 
-## 👩‍💻 Author
+For a production version, password hashing and other security improvements would be added.
 
-**Syeda Juveriya**
-Final-year B.Tech student, Artificial Intelligence & Data Science
-GitHub: [@SyedaJuveriya](https://github.com/SyedaJuveriya)
+## Author
+
+Syeda Juveriya
+
+```
+
+**One correction before you paste:** your actual GitHub repo URL is `careerlen-ai` according to the terminal you showed me, so I kept that exact name in the clone command. Also, make sure `requirements.txt` actually exists in your GitHub repo before keeping it in the structure, otherwise remove that line.
+```
+
