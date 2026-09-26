@@ -1,4 +1,5 @@
 import os
+import ssl
 from dotenv import load_dotenv
 
 from sqlalchemy import create_engine
@@ -8,12 +9,12 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
+ssl_context = ssl.create_default_context()
+
 engine = create_engine(
     DATABASE_URL,
     pool_pre_ping=True,
-    connect_args={
-        "ssl": {"ssl_mode": "VERIFY_IDENTITY"}
-    }
+    connect_args={"ssl": ssl_context}
 )
 
 SessionLocal = sessionmaker(bind=engine)
