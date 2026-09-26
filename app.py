@@ -28,8 +28,8 @@ Base.metadata.create_all(bind=engine)
 def home():
     if "user_id" in session:
         return redirect("/dashboard")
-
-    return redirect("/login")
+    
+    return render_template("landing.html")
 
 
 # Signup
