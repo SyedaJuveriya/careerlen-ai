@@ -1,4 +1,3 @@
-````markdown
 # CareerLens AI
 
 CareerLens AI is a Flask-based web application that analyzes a resume based on the user's career goal.
