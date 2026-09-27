@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 
 load_dotenv()
-
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask, render_template, request, redirect, session
 
 from db import Base, engine, SessionLocal
@@ -59,7 +59,7 @@ def signup():
         # Create new user
         new_user = models.User(
             email=email,
-            password=password
+            password=generate_password_hash(password)
         )
 
         db.add(new_user)
@@ -84,17 +84,13 @@ def login():
 
         # Check login credentials
         user = (
-            db.query(models.User)
-            .filter_by(
-                email=email,
-                password=password
-            )
-            .first()
-        )
-
+    db.query(models.User)
+    .filter_by(email=email)
+    .first()
+)
         db.close()
 
-        if user:
+        if user and check_password_hash(user.password, password):
 
             session["user_id"] = user.id
 
